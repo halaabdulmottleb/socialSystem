@@ -63,29 +63,56 @@
             </div>
         </div>
         <!-- end posts card -->
+        <!-- friend reuests -->
         <div class="col-md-2 mt-4">
-          <div class="card mt-4" style="width: 18rem; overflow: scroll; height: 400px">
-            <div class="card-header">
-               Friend Requests
-             </div>
-             <ul class="list-group list-group-flush">
-              @foreach($user['requests'] as $request)
-               <li class="list-group-item">
-                {{$request['from_name']}}
-                <div class="btn-group float-right" role="group" aria-label="Basic example">
-                   <button type="button" class="btn btn-success">A</button>
-                   <form method="post" action="{{ route('deleteRequest' , [$request['id']]) }}">
-                    @csrf
-                      <button type="submit" class="btn btn-danger">A</button>
-                   </form>
-                  
+          <div class="row">
+             <div class="card mt-4" style="width: 18rem; overflow: scroll; height: 400px">
+               <div class="card-header">
+                  Friend Requests
+                </div>
+                <ul class="list-group list-group-flush">
+                 @foreach($user['requests'] as $request)
+                  <li class="list-group-item">
+                   {{$request['from_name']}}
+                   <div class="btn-group float-right" role="group" aria-label="Basic example">
+                     <!-- accept -->
+                      <form method="post" action="{{route('acceptRequest' , [$request['id']  , $request['from_id']])}}">
+                       @csrf
+                         <button type="submit" class="btn btn-success">A</button>
+                      </form>
+                      <!-- ignore -->
+                      <form method="post" action="{{ route('deleteRequest' , [$request['id']]) }}">
+                       @csrf
+                         <button type="submit" class="btn btn-danger">A</button>
+                      </form>   
 
-                 </div>
-               </li>
-               @endforeach
-             </ul>
+                    </div>
+                  </li>
+                  @endforeach
+                </ul>
+             </div>
           </div>
+          <div class="row">
+                    <!-- friend reuests -->
+               <div class="col-md-2 mt-4">
+                 <div class="card mt-4" style="width: 18rem; overflow: scroll; height: 400px">
+                   <div class="card-header">
+                     Friends
+                    </div>
+                    <ul class="list-group list-group-flush">
+                    {{$user['friends']}}
+                    </ul>
+                 </div>
+               </div>
+               <!-- endfriendRequest -->
+          </div>
+         <div>
+
         </div>
+
+        <!-- endfriendRequest -->
+       
+        
     </div>
 </div>
 @endsection

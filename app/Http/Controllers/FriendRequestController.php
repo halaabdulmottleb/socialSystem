@@ -34,6 +34,13 @@ class FriendRequestController extends Controller
         return redirect()->back();
 
     }
+   public function acceptRequest($request_id , $sender_id) 
+    {
+         $this->friendRequestRepository->accept($request_id , $sender_id);
+
+         return redirect()->back();
+
+    }
 
 
     public function destroy($id)

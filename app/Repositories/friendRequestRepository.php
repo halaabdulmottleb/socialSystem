@@ -2,6 +2,7 @@
 
 namespace App\Repositories ;
 use App\friendRequest;
+use App\friend;
 use Auth ;
 
 
@@ -23,7 +24,27 @@ class friendRequestRepository
         }
 
 	}
-	
+	public function accept($request_id , $sender_id) 
+    {
+
+        try
+        {
+            $relation            = new friend() ;
+            $relation->user_one  = $sender_id;
+            $relation->user_two  = Auth::user()->id;
+            $relation->save();
+        
+        }  catch(\Illuminate\Database\QueryException $e){
+            $errorCode = $e->errorInfo[1];
+           
+        }
+
+        // delete request 
+        friendRequest::findOrFail($request_id)->delete();
+
+
+    }
+    
 	public function destroy($id)
     {
         friendRequest::findOrFail($id)->delete();
