@@ -59,6 +59,7 @@ class User extends Authenticatable
             'user_id' => $this->id,
             'user_name' => $this->name,
             'user_email' => $this->email,
+            'profile' => $this->profile,
             'posts' => $this->posts()->get()->map->format(),
             'requests' => $this->requests()->get()->map->format(),
            

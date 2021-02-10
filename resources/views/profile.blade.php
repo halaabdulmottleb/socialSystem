@@ -7,7 +7,7 @@
       <!-- user information card -->
         <div class="col-md-2">
           <div class="card">
-            <img src="/avatars/3474950.jpg" class="card-img-top" alt="...">
+            <img src="/avatars/{{$user['profile']}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{strtoupper($user['user_name'])}}</h5>
               <p> 
@@ -15,7 +15,11 @@
                    | 
                 {{$user['user_email']}}
               </p>
-              <p class="card-text"></p>
+              <form method="post" action="{{route('uploadProfile')}}" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file">
+                 <button class="btn btn-primary float-right" type="submit">Profile</button>
+              </form>
              
             </div>
           </div>

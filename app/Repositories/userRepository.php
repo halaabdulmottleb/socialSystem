@@ -2,6 +2,7 @@
 
 namespace App\Repositories ;
 use App\user;
+use Auth;
 
 
 class userRepository 
@@ -19,6 +20,21 @@ class userRepository
 		$user = user::where('id' , $userId )->firstOrFail()->format();
 		return $user;
 		 
+
+	}
+
+	public function uploadProfile($data) 
+	{
+		$user = Auth::user();
+		if($data->hasFile('file'))
+         {
+            $file = $data->file('file');
+            $filename =  $user->email .'-' . time() . '.' . $file->getClientOriginalExtension();
+            $destination = public_path('/Avatars');
+            $file->move($destination , $filename );
+            $user->profile =$filename;
+            $user->save();
+         }
 
 	}
 

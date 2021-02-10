@@ -32,5 +32,12 @@ class userController extends Controller
 		return view('profiles')->with('users' , $users);
 	}
 
+	public function uploadProfile(Request $request) 
+	{
+
+		$this->userRepository->uploadProfile($request);
+		return redirect()->back();
+	}
+
 
 }
