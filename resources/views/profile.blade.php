@@ -106,10 +106,10 @@
                     </div>
                     <ul class="list-group list-group-flush">
                       @foreach($user['friendsOne'] as $friend)
-                         <li class="list-group-item">{{$friend['user_two_name']}}</li>
+                         <li class="list-group-item">{{$friend['user_one_name']}}- {{$friend['user_one_email']}}  </li>
                       @endforeach 
                       @foreach($user['friendsTwo'] as $friend)
-                        <li class="list-group-item">{{$friend['user_two_name']}}</li>
+                        <li class="list-group-item">{{$friend['user_two_name']}} - {{$friend['user_two_email']}} </li>
                       @endforeach
                     </ul>
                  </div>

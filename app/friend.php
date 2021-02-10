@@ -19,7 +19,9 @@ class friend extends Model
     	[
     		'user_two_id'   => $this->fromUser()->first()->id,
     		'user_two_name' => $this->fromUser()->first()->name,
+    		'user_two_email' => $this->fromUser()->first()->email,
     		'user_one_name' => $this->toUser()->first()->name,
+    		'user_one_email' => $this->toUser()->first()->email,
     		'user_one_id'   => $this->toUser()->first()->id,
     	];
 
