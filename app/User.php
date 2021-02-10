@@ -51,11 +51,13 @@ class User extends Authenticatable
 
         return $this->hasMany(friendRequest::class , 'from_id');
     }
-    public function friends()
+    public function friendsOne()
     {
-
-        return $this->belongsToMany(friend::class);
-
+        return $this->hasMany(friend::class ,'user_one');
+    }
+    public function friendsTwo()
+    {
+        return $this->hasMany(friend::class ,'user_two');
     }
     
 
@@ -68,7 +70,8 @@ class User extends Authenticatable
             'profile'    => $this->profile,
             'posts'      => $this->posts()->get()->map->format(),
             'requests'   => $this->requests()->get()->map->format(),
-            'friends'   => $this->friends()->get(),
+            'friendsOne' => $this->friendsOne()->get()->map->format(),
+            'friendsTwo' => $this->friendsTwo()->get()->map->format(),
            
         ];
     }

@@ -15,11 +15,13 @@
                    | 
                 {{$user['user_email']}}
               </p>
+               @if($user['user_id'] == Auth::user()->id)
               <form method="post" action="{{route('uploadProfile')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="file" name="file">
                  <button class="btn btn-primary float-right" type="submit">Profile</button>
               </form>
+              @endif
              
             </div>
           </div>
@@ -27,10 +29,12 @@
         <!-- end user information card -->
         <!-- posts card -->
         <div class="col-md-6 mt-4">
+          @if($user['user_id'] == Auth::user()->id)
           <!-- addPost -->
             @component('components/addPostComponent' )      
             @endcomponent
             <!-- end add post -->
+          @endif
 
             <div class="card mt-4">
                 <div class="card-header text-center">Posts</div>
@@ -63,6 +67,7 @@
             </div>
         </div>
         <!-- end posts card -->
+          @if($user['user_id'] == Auth::user()->id)
         <!-- friend reuests -->
         <div class="col-md-2 mt-4">
           <div class="row">
@@ -100,7 +105,12 @@
                      Friends
                     </div>
                     <ul class="list-group list-group-flush">
-                    {{$user['friends']}}
+                      @foreach($user['friendsOne'] as $friend)
+                         <li class="list-group-item">{{$friend['user_two_name']}}</li>
+                      @endforeach 
+                      @foreach($user['friendsTwo'] as $friend)
+                        <li class="list-group-item">{{$friend['user_two_name']}}</li>
+                      @endforeach
                     </ul>
                  </div>
                </div>
@@ -114,5 +124,6 @@
        
         
     </div>
+    @endif
 </div>
 @endsection
