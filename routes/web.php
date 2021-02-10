@@ -19,14 +19,9 @@ Route::post('/comment', 'commentController@addComment')->name('addComment');
 //like unlike
 Route::post('/post/like/{id}', 'likeController@likeUnlike')->name('likeUnlike');
 
-//users 
-Route::get('/profiles', 'userController@profiles');
-Route::get('/friends', 'FriendRequestController@index');
-
 //request 
 
 Route::post('/Request/{id}/delete', 'FriendRequestController@destroy')->name('deleteRequest');
-
 
 
 Route::get('/profile/{id}', 'userController@profile');
