@@ -19,6 +19,22 @@ class FriendRequestController extends Controller
 
     }
 
+    public function sendRequest($id) 
+    {
+         $this->friendRequestRepository->create($id);
+
+        return redirect()->back();
+
+    }
+
+   public function unSendRequest($id) 
+    {
+         $this->friendRequestRepository->deleteByUserID($id);
+
+        return redirect()->back();
+
+    }
+
 
     public function destroy($id)
     {

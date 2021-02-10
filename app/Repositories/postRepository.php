@@ -33,7 +33,7 @@ class postRepository
         
         } catch (Exception $e) {
            
-           echo "error";
+           
         }
 
        
