@@ -10,7 +10,7 @@ class postRepository
 	// to return all posts without any conditions
 	public function all()
 	{
-		$posts =  post::orderBy('content')->get()->map->format();
+		$posts =  post::orderBy('created_at')->get()->map->format();
         return $posts;
 
 	}
